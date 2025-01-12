@@ -79,8 +79,44 @@ const emojiDetails = [
     }, 1000);
   }
   
-  function endGame() { 
-    clearInterval(timer);
-    guessInput.disabled = true;
-    timerElement.textContent = "";
-  }
+// Existing code...
+
+// document.getElementById("restart-button").addEventListener("click", resetGame);
+const restartButton = document.getElementById("restart-button");
+
+restartButton.addEventListener("click", resetGame);
+
+function resetGame() {
+  currentEmojiIndex = 0;
+  score = 0;
+  seconds = 30;
+  
+  // Reset UI elements
+  guessInput.disabled = false;
+  guessInput.value = "";
+  resultElement.textContent = "";
+  scoreElement.textContent = `Score: ${score}`;
+  timerElement.textContent = `Time left: ${seconds}s`;
+  document.getElementById("restart-button").style.display = "none";
+
+  // Restart the game
+  displayEmoji(); 
+  startTimer();
+}
+
+function endGame() { 
+  clearInterval(timer);
+  guessInput.disabled = true;
+  timerElement.textContent = "";
+  document.getElementById("restart-button").style.display = "block"; // Show the restart button
+}
+
+// Existing code...
+
+
+  // function endGame() { 
+  //   clearInterval(timer);
+  //   guessInput.disabled = true;
+  //   timerElement.textContent = "";
+  // }
+
